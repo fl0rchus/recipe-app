@@ -9,6 +9,8 @@ const SearchBar = () => {
         placeholder="Search"
         contentRight={<Icon />}
         size="md"
+        aria-label="search"
+        id="search"
       />
     </Container>
   );
