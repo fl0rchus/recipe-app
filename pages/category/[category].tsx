@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/link-passhref */
 import type { ReactElement, ReactNode, FC } from "react";
-import type { NextPage } from "next";
 import { useRouter } from "next/router";
 
 import { Container, Grid, Text } from "@nextui-org/react";
@@ -10,6 +10,7 @@ import { GetStaticProps } from "next";
 import { CategoryResult, Meal } from "interfaces/index";
 import { GetStaticPaths } from "next";
 import Layout from "@layout/Layout";
+import Link from "next/link";
 interface Props {
   recipes: Meal[];
   getLayout: (page: ReactElement) => ReactNode;
@@ -27,9 +28,11 @@ const Category: FC<Props> = ({ recipes }) => {
       </Text>
       <Grid.Container gap={4} css={{ padding: 0 }}>
         {recipes.map((item, index) => (
-          <Grid key={index}>
-            <RecipeCard data={item} />
-          </Grid>
+          <Link href={`/recipe/${item.idMeal}`} key={item.idMeal}>
+            <Grid key={index}>
+              <RecipeCard data={item} />
+            </Grid>
+          </Link>
         ))}
       </Grid.Container>
     </Container>

@@ -1,8 +1,9 @@
+import { Meal } from "@interfaces";
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
 import { FC } from "react";
 
 interface Props {
-  data: any;
+  data: Meal;
 }
 
 const RecipeCard: FC<Props> = ({ data }) => {
@@ -21,7 +22,6 @@ const RecipeCard: FC<Props> = ({ data }) => {
         css={{
           position: "absolute",
           bgBlur: "#ffffff",
-          borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
           bottom: 0,
           zIndex: 1,
         }}

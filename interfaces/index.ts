@@ -13,3 +13,18 @@ export interface Meal {
     strMealThumb: string;
     idMeal: string;
 }
+
+export interface RecipeInformation {
+    id: string,
+    name: string,
+    category: string,
+    instructions: string,
+    image: string,
+    tags: string[],
+    video: string
+    ingredients: {
+        label: string,
+        measure: string
+    }[],
+    source: string
+}
