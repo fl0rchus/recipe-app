@@ -4,69 +4,14 @@ import { GetServerSideProps } from "next";
 import { NextPage } from "next";
 import { recipeAPI } from "@utils/api";
 import { RecipeInformation } from "@interfaces";
-import { Card, Col, Grid, Text, Link, Table, Image } from "@nextui-org/react";
+import RecipeInfo from "@components/RecipeInfo";
 
 interface Props {
   info: RecipeInformation;
 }
 
 const Recipe: NextPage<Props> = ({ info }) => {
-  console.log(info);
-  return (
-    <Grid.Container
-      gap={2}
-      css={{ marginTop: 40, paddingLeft: 20, paddingRight: 20 }}
-    >
-      <Grid xs={12} md={8}>
-        <Card css={{ padding: 20 }}>
-          <Card.Header>
-            <Col>
-              <Text h1>{info.name}</Text>
-              <Text weight="medium" color="warning">
-                Category: {info.category}
-              </Text>
-            </Col>
-          </Card.Header>
-          <Card.Body>
-            <Col>
-              <Text h4>Instructions</Text>
-              <Text weight="light">{info.instructions}</Text>
-              <Text h4>Ingredients</Text>
-              {info.ingredients.map(
-                (item, index) =>
-                  item.label &&
-                  item.measure != "" && (
-                    <Text key={index} weight="light">
-                      {item.label} - {item.measure}
-                    </Text>
-                  )
-              )}
-            </Col>
-          </Card.Body>
-          <Card.Footer>
-            <Col>
-              <Text color="warning" size={14}>
-                Tags: {info.tags}
-              </Text>
-              <Link href={info.video} target="_blank">
-                Link to video
-              </Link>
-            </Col>
-            <Link href={info.source} target="_blank">
-              Source
-            </Link>
-          </Card.Footer>
-        </Card>
-      </Grid>
-      <Grid xs={12} md={4}>
-        <Card>
-          <Card.Body>
-            <Card.Image src={info.image} alt={info.name} />
-          </Card.Body>
-        </Card>
-      </Grid>
-    </Grid.Container>
-  );
+  return <RecipeInfo info={info} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
