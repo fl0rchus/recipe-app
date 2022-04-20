@@ -18,11 +18,6 @@ const Navbar = () => {
           </Text>
         </Link>
       </NextLink>
-      <NextLink href="/favorites">
-        <Link color="warning" block>
-          Favorites
-        </Link>
-      </NextLink>
     </nav>
   );
 };

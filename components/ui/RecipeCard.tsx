@@ -1,6 +1,6 @@
-import { Meal } from "@interfaces";
-import { Card, Col, Row, Button, Text } from "@nextui-org/react";
 import { FC } from "react";
+import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+import { Meal } from "@interfaces";
 
 interface Props {
   data: Meal;
