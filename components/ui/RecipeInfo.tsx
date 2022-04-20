@@ -7,6 +7,7 @@ import {
   Link,
   Image,
   Grid,
+  Button,
 } from "@nextui-org/react";
 import { RecipeInformation } from "@interfaces";
 
@@ -24,7 +25,7 @@ const RecipeInfo: FC<Props> = ({ info }) => {
       <Grid xs={12} md={8}>
         <Card css={{ padding: 20 }}>
           <Card.Header>
-            <Container css={{ padding: 0 }}>
+            <Col>
               <Text h1>{info.name}</Text>
               <Text weight="medium">
                 Category:{" "}
@@ -32,7 +33,10 @@ const RecipeInfo: FC<Props> = ({ info }) => {
                   {info.category}
                 </Link>
               </Text>
-            </Container>
+            </Col>
+            <Button shadow color="warning" auto size="sm">
+              Save
+            </Button>
           </Card.Header>
           <Card.Body>
             <Container css={{ padding: 0, marginBottom: 20 }}>
