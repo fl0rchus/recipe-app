@@ -1,7 +1,8 @@
 import type { NextPage, GetStaticProps } from "next";
+import Head from "next/head";
 import Link from "next/link";
 
-import { Container, Divider, Grid, Text } from "@nextui-org/react";
+import { Container, Grid, Text } from "@nextui-org/react";
 
 import { getCategoriesList } from "@utils/getCategoriesList";
 import { CategoryLabel } from "@interfaces";
@@ -16,6 +17,11 @@ interface Props {
 const Home: NextPage<Props> = ({ categories }) => {
   return (
     <>
+      <Head>
+        <title>Recepie App</title>
+        <meta name="author" content="Fl0rchus" />
+        <meta name="description" content="Recepie app created with NextJS" />
+      </Head>
       <Container>
         <Container
           display="flex"
