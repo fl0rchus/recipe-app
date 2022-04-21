@@ -1,14 +1,13 @@
-import type { NextPage } from "next";
-import { GetStaticProps } from "next";
-import { Container, Grid, Text } from "@nextui-org/react";
+import type { NextPage, GetStaticProps } from "next";
 import Link from "next/link";
+
+import { Container, Grid, Text } from "@nextui-org/react";
+
+import { getCategoriesList } from "@utils/getCategoriesList";
+import { CategoryLabel } from "@interfaces";
 
 import SearchBar from "@components/SearchBar";
 import CategoryCard from "@components/CategoryCard";
-
-import { recipeAPI } from "@utils/api";
-import { CategoriesList, CategoryLabel } from "@interfaces";
-
 interface Props {
   categories: CategoryLabel[];
 }
@@ -56,12 +55,9 @@ const Home: NextPage<Props> = ({ categories }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await recipeAPI.get<CategoriesList>("list.php?c=list");
-  const categories: CategoryLabel[] = data.meals.map((item) => item);
-
   return {
     props: {
-      categories: categories,
+      categories: await getCategoriesList(),
     },
   };
 };
