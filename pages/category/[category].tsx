@@ -1,14 +1,17 @@
 /* eslint-disable @next/next/link-passhref */
 import type { ReactElement, ReactNode, FC } from "react";
+
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 
 import Layout from "@layout/Layout";
-import { recipeAPI } from "@utils/api";
-
-import { CategoryResult, Meal } from "interfaces/index";
 
 import GridContainer from "@components/GridContainer";
+
+import { Meal } from "@interfaces";
+
+import { getCategoryItems } from "@utils/getCategoryItems";
+import { getCategoriesList } from "@utils/getCategoriesList";
 
 interface Props {
   recipes: Meal[];
@@ -26,10 +29,11 @@ const Category: FC<Props> = ({ recipes }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await recipeAPI.get("list.php?c=list");
+  const categories = await getCategoriesList();
 
   return {
-    paths: data.meals.map((category: { strCategory: string }) => ({
+    //@ts-ignore
+    paths: categories.map((category: { strCategory: string }) => ({
       params: { category: category.strCategory },
     })),
     fallback: false,
@@ -38,12 +42,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { category } = params as { category: string };
-  const { data } = await recipeAPI.get<CategoryResult>(
-    `filter.php?c=${category}`
-  );
+
+  const recipes = await getCategoryItems(category);
+
   return {
     props: {
-      recipes: data.meals,
+      recipes,
     },
   };
 };
