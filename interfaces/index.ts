@@ -28,3 +28,10 @@ export interface RecipeInformation {
     }[],
     source: string
 }
+export interface CategoriesList {
+    meals: CategoryLabel[];
+}
+
+export interface CategoryLabel {
+    strCategory: string;
+}

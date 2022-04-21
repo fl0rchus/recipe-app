@@ -7,10 +7,10 @@ import SearchBar from "@components/SearchBar";
 import CategoryCard from "@components/CategoryCard";
 
 import { recipeAPI } from "@utils/api";
-import { CategoriesList, Meal } from "interfaces/CategoriesListResponse";
+import { CategoriesList, CategoryLabel } from "@interfaces";
 
 interface Props {
-  categories: Meal[];
+  categories: CategoryLabel[];
 }
 
 const Home: NextPage<Props> = ({ categories }) => {
@@ -57,7 +57,7 @@ const Home: NextPage<Props> = ({ categories }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await recipeAPI.get<CategoriesList>("list.php?c=list");
-  const categories: Meal[] = data.meals.map((item) => item);
+  const categories: CategoryLabel[] = data.meals.map((item) => item);
 
   return {
     props: {
