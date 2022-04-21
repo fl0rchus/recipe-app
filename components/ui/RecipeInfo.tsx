@@ -7,10 +7,8 @@ import {
   Link,
   Image,
   Grid,
-  Button,
 } from "@nextui-org/react";
 import { RecipeInformation } from "@interfaces";
-import { toggleSave } from "@utils/localstorage";
 
 interface Props {
   info: RecipeInformation;
@@ -23,8 +21,8 @@ const RecipeInfo: FC<Props> = ({ info }) => {
       css={{ marginTop: 10, paddingLeft: 20, paddingRight: 20 }}
     >
       <Grid xs={12} md={8}>
-        <Card css={{ padding: 20 }}>
-          <Card.Header>
+        <Card>
+          <Card.Header css={{ paddingLeft: 20 }}>
             <Col>
               <Text h1>{info.name}</Text>
               <Text weight="medium">
@@ -37,7 +35,9 @@ const RecipeInfo: FC<Props> = ({ info }) => {
           </Card.Header>
           <Card.Body>
             <Container css={{ padding: 0, marginBottom: 20 }}>
-              <Text h4>Instructions</Text>
+              <Text h4 css={{ marginBottom: 0 }}>
+                Instructions
+              </Text>
               <Text weight="light">{info.instructions}</Text>
             </Container>
             <Container css={{ padding: 0 }}>

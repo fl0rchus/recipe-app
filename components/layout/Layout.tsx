@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Head from "next/head";
 import Navbar from "@components/Navbar";
+import Footer from "@components/Footer";
 
 interface Props {
   children: JSX.Element;
@@ -18,6 +19,7 @@ const Layout: FC<Props> = ({ children }) => {
         <Navbar />
       </header>
       <main>{children}</main>
+      <Footer />
     </>
   );
 };
