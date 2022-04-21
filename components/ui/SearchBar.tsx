@@ -1,17 +1,32 @@
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { Container, Input } from "@nextui-org/react";
 
 const SearchBar = () => {
+  const [query, setQuery] = useState<string>();
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push(`/search/${query}`);
+  };
+
   return (
     <Container display="flex" alignItems="center" justify="center">
-      <Input
-        bordered
-        color="warning"
-        placeholder="Search"
-        contentRight={<Icon />}
-        size="md"
-        aria-label="search"
-        id="search"
-      />
+      <form onSubmit={handleSubmit}>
+        <Input
+          bordered
+          name="search"
+          color="warning"
+          placeholder="Search recipe"
+          contentRight={<Icon />}
+          size="md"
+          aria-label="search"
+          id="search"
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
+        />
+      </form>
     </Container>
   );
 };

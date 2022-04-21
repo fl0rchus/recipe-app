@@ -1,7 +1,9 @@
 import type { ReactElement } from "react";
-import Layout from "@layout/Layout";
+
 import { GetServerSideProps } from "next";
 import { NextPage } from "next";
+
+import Layout from "@layout/Layout";
 import { recipeAPI } from "@utils/api";
 import { RecipeInformation } from "@interfaces";
 import RecipeInfo from "@components/RecipeInfo";

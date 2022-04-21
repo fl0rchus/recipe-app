@@ -1,16 +1,15 @@
 /* eslint-disable @next/next/link-passhref */
 import type { ReactElement, ReactNode, FC } from "react";
+import { GetStaticProps, GetStaticPaths } from "next";
 import { useRouter } from "next/router";
 
-import { Container, Grid, Text } from "@nextui-org/react";
-import { recipeAPI } from "@utils/api";
-import RecipeCard from "@components/RecipeCard";
-
-import { GetStaticProps } from "next";
-import { CategoryResult, Meal } from "interfaces/index";
-import { GetStaticPaths } from "next";
 import Layout from "@layout/Layout";
-import Link from "next/link";
+import { recipeAPI } from "@utils/api";
+
+import { CategoryResult, Meal } from "interfaces/index";
+
+import GridContainer from "@components/GridContainer";
+
 interface Props {
   recipes: Meal[];
   getLayout: (page: ReactElement) => ReactNode;
@@ -21,22 +20,9 @@ const Category: FC<Props> = ({ recipes }) => {
     query: { category },
   } = useRouter();
 
-  return (
-    <Container css={{ marginTop: 20, marginBottom: 20 }}>
-      <Text h1 weight="medium" css={{ marginBottom: 20 }}>
-        {category}
-      </Text>
-      <Grid.Container gap={4} css={{ padding: 0 }}>
-        {recipes.map((item, index) => (
-          <Link href={`/recipe/${item.idMeal}`} key={item.idMeal}>
-            <Grid key={index}>
-              <RecipeCard data={item} />
-            </Grid>
-          </Link>
-        ))}
-      </Grid.Container>
-    </Container>
-  );
+  const items = recipes;
+
+  return <GridContainer title={`${category}`} items={items} />;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
